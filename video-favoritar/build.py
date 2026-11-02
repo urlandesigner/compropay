@@ -2,6 +2,8 @@
 
 Entrada: telas do Figma em fig/, narração gerada aqui (Kokoro, pt-BR).
 Saída: out/favoritar.mp4 (1920x1080, texto na lateral) + out/favoritar.vtt
+
+Fonte, modelo de voz e venv vêm de ../video-comum (ver o README de lá).
 """
 import os, subprocess, sys
 import numpy as np
@@ -10,12 +12,13 @@ import imageio_ffmpeg
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+COMUM = os.path.join(ROOT, '..', 'video-comum')
 FIG = os.path.join(ROOT, "fig")
 OUT = os.path.join(ROOT, "out"); os.makedirs(OUT, exist_ok=True)
 FPS, W, H = 30, 1920, 1080
 SW, SH = 430, 932                      # tela do app, 1x do Figma
 ROXO = (113, 32, 209); TINTA = (33, 20, 56)
-FONT = os.path.join(ROOT, "fonts", "Inter-%s.otf")
+FONT = os.path.join(COMUM, "fonts", "Inter-%s.otf")
 def font(w, s): return ImageFont.truetype(FONT % w, s)
 FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
 
@@ -33,7 +36,7 @@ VOZ = os.environ.get("VOZ", "pf_dora")
 
 def narrar():
     from kokoro_onnx import Kokoro
-    k = Kokoro(os.path.join(ROOT, "tts/kokoro-v1.0.onnx"), os.path.join(ROOT, "tts/voices-v1.0.bin"))
+    k = Kokoro(os.path.join(COMUM, "tts/kokoro-v1.0.onnx"), os.path.join(COMUM, "tts/voices-v1.0.bin"))
     clips = []
     for txt in LINHAS:
         s, sr = k.create(txt, voice=VOZ, speed=1.0, lang="pt-br")
