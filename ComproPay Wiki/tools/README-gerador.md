@@ -1,0 +1,42 @@
+# ComproPay Wiki
+
+Ajuda, FAQ e tutoriais sobre o app e os sistemas da ComproPay. HTML puro + o design system em `DS wiki/`. Sem build e sem dependências.
+
+```
+./serve.sh          # http://localhost:3000
+```
+
+## Estrutura
+
+```
+index.html               a página inicial: título e busca, filtro de categorias, lista, rodapé
+conteudo/perguntas.html  fonte das respostas (edite aqui)
+perguntas/               uma página por pergunta (gerada)
+tools/gerar-perguntas.py gerador das páginas e da lista
+assets/site.css          cola com o DS (só layout, só tokens --cp-*)
+assets/faq.js            filtro por categoria e busca (?categoria=slug&q=texto)
+assets/ajuda.js          "Isso ajudou?" e WhatsApp
+assets/config.js         número do WhatsApp
+DS wiki/            design system: tokens, fonte Satoshi, componentes cp-*
+```
+
+**Nova pergunta:** copie um bloco `<details data-categoria="...">` de `conteudo/perguntas.html` e rode o gerador (abaixo).
+O `data-categoria` tem de ser um dos `data-cat` dos botões do filtro.
+
+Se mudar o DS, rode `./build.sh` dentro de `DS wiki/` para regenerar `dist/`.
+
+## Perguntas
+
+Cada pergunta tem uma página própria em `perguntas/`, e a lista do `index.html` leva para elas. As respostas moram em `conteudo/perguntas.html`. Depois de editar, incluir ou tirar uma resposta lá, rode:
+
+```bash
+python3 tools/gerar-perguntas.py
+```
+
+O gerador refaz `perguntas/` e a lista do `index.html`. Não edite esses dois à mão (a lista fica entre `LISTA:INICIO` e `LISTA:FIM`).
+
+- **WhatsApp:** o número fica em `assets/config.js`. Vazio = botão desativado.
+- **Atualizado em:** `data-atualizado="2026-10-28"` no `<details>` da pergunta, depois rode o gerador.
+- **Atualizadas recentemente:** aparece sozinha no `index.html` quando alguma pergunta tem `data-atualizado` (as 5 mais novas). Sem data nenhuma, a seção some.
+- **Lista curta:** sem filtro nem busca, a home mostra as 8 primeiras perguntas e o botão "Ver todas" abre o resto (`LIMITE`, em `assets/faq.js`). Sem JavaScript a lista vem inteira.
+- **Sugestões de busca:** links `data-sugestao` no `index.html`. **Atalho:** Ctrl+K (⌘K no Mac) leva o cursor à busca.
