@@ -123,8 +123,10 @@ main:focus { outline: none; } /* recebe foco só pelo "Pular para o conteúdo" *
 /* Selo de categoria: some quando a lista já está filtrada por uma categoria. */
 .sem-selo .cp-badge { display: none; }
 
-/* "Ver todas": fecha a lista curta. */
-.faq-mais { display: flex; justify-content: center; margin-top: var(--cp-space-4); }
+/* "Ver todas": fecha a lista curta. O painel só tem 8px de padding embaixo, e o botão ficava
+   mais perto da borda do que do último item. O respiro vai aqui, no próprio .faq-mais, para
+   sumir junto com ele quando a lista abre e o botão se esconde. */
+.faq-mais { display: flex; justify-content: center; margin-top: var(--cp-space-4); padding-block-end: var(--cp-space-4); }
 .faq-mais[hidden] { display: none; }
 
 /* Sem o contador entre eles, a lista precisa do próprio respiro. */
