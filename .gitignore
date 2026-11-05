@@ -28,3 +28,10 @@ out/
 
 # NADA dentro de `<Pasta>/site/` é ignorado de propósito — é o export
 # estático publicado, a única coisa que o GitHub Pages sabe servir.
+
+# Telas tiradas do app rodando numa conta de verdade, usadas para montar os
+# vídeos da Wiki. Têm nome, saldo e número de cartão reais. Os roteiros em
+# `video-*/roteiro.yaml` apontam para cá e pintam máscaras por cima; só o
+# resultado mascarado é publicado. O original nunca entra no repositório,
+# que é público.
+capturas-iphone/

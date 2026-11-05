@@ -1,0 +1,136 @@
+# Gerado a partir do que foi capturado no iPhone (capturas-iphone/, fora do Git).
+# Dados pessoais trocados por fictícios nas máscaras. Confira revisao.jpg antes de publicar.
+video: bloquear-cartao
+rotulo: Bloquear um cartão
+aparelho: {largura: 430, altura: 932}
+telas:
+  home: {fonte: ../video-home/fig/home.png, fixo_topo: 62, fixo_base: 120, fim_conteudo: 1152}
+  lista:
+    fonte: ../capturas-iphone/bloquear-cartao/01-lista-de-cartoes.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    mascara:
+    - rect: [188, 276, 321, 298]
+      modo: trocar
+      texto: Eduardo Silva
+      tam: 14
+      peso: SemiBold
+      cor: [95, 95, 100]
+      alinhar: esq
+    - rect: [40, 278, 124, 300]
+      modo: trocar
+      texto: •••• 6399
+      tam: 14
+      peso: SemiBold
+      cor: [105, 105, 110]
+      alinhar: esq
+    - rect: [165, 360, 254, 376]
+      modo: trocar
+      texto: R$ 300,00
+      tam: 14
+      peso: Bold
+      cor: [113, 32, 209]
+      alinhar: esq
+    - rect: [186, 418, 319, 440]
+      modo: trocar
+      texto: Eduardo Silva
+      tam: 14
+      peso: SemiBold
+      cor: [95, 95, 100]
+      alinhar: esq
+    - rect: [40, 421, 124, 443]
+      modo: trocar
+      texto: •••• 8393
+      tam: 14
+      peso: Bold
+      cor: [30, 30, 35]
+      alinhar: esq
+  opcoes:
+    fonte: ../capturas-iphone/bloquear-cartao/02-cartao-opcoes.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    mascara:
+    - rect: [160, 54, 270, 74]
+      modo: trocar
+      texto: CARTÃO 8393
+      tam: 13
+      peso: Regular
+      cor: [40, 40, 45]
+      alinhar: centro
+    - rect: [165, 125, 252, 141]
+      modo: trocar
+      texto: R$ 300,00
+      tam: 14
+      peso: Bold
+      cor: [113, 32, 209]
+      alinhar: esq
+    - rect: [40, 187, 124, 207]
+      modo: trocar
+      texto: •••• 8393
+      tam: 14
+      peso: Bold
+      cor: [30, 30, 35]
+      alinhar: esq
+    - rect: [186, 185, 319, 205]
+      modo: trocar
+      texto: Eduardo Silva
+      tam: 14
+      peso: SemiBold
+      cor: [95, 95, 100]
+      alinhar: esq
+  confirmar:
+    fonte: ../capturas-iphone/bloquear-cartao/03-confirmar-bloqueio.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    mascara:
+    - rect: [160, 54, 270, 74]
+      modo: trocar
+      texto: CARTÃO 8393
+      tam: 13
+      peso: Regular
+      cor: [45, 45, 48]
+      alinhar: centro
+    - rect: [165, 125, 252, 141]
+      modo: trocar
+      texto: R$ 300,00
+      tam: 14
+      peso: Bold
+      cor: [51, 14, 94]
+      alinhar: esq
+    - rect: [40, 187, 124, 207]
+      modo: trocar
+      texto: •••• 8393
+      tam: 14
+      peso: Bold
+      cor: [20, 20, 22]
+      alinhar: esq
+    - rect: [186, 185, 319, 205]
+      modo: trocar
+      texto: Eduardo Silva
+      tam: 14
+      peso: SemiBold
+      cor: [48, 48, 52]
+      alinhar: esq
+    - rect: [135, 441, 295, 465]
+      modo: trocar
+      texto: 6392********8393
+      tam: 16
+      peso: Regular
+      cor: [95, 95, 100]
+      alinhar: centro
+passos:
+- fala: Na barra de baixo, toque em Cartões.
+  tela: home
+  toque: [292, 872]
+  vai_para: lista
+- fala: Toque no cartão que você quer bloquear.
+  toque: [215, 411]
+  vai_para: opcoes
+- fala: Escolha Bloquear cartão.
+  toque: [150, 407]
+  vai_para: confirmar
+- fala: Confirme em Bloquear cartão. Pronto!
+  toque:
+    em: [215, 524]
+    quando: 0.6
+poster: {passo: 3, apos: 0.4}

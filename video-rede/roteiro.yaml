@@ -1,0 +1,40 @@
+# Como consultar a rede credenciada ComproPay e Comprocard?
+# Mesmo vídeo que o build.py desta pasta faz, só que descrito aqui.
+# Coordenadas na tela do aparelho (430x896), com a rolagem já aplicada.
+video: rede-credenciada
+rotulo: Consultar a rede credenciada
+voz: pf_dora
+aparelho: { largura: 430, altura: 896 }
+
+telas:
+  home:
+    fonte: fig/home.png            # 430x1255, do Figma (frame 7276:89822)
+    fixo_topo: 62                  # barra de status: não rola
+    fixo_base: 120                 # menu inferior: não rola
+    fim_conteudo: 1152             # onde os Serviços terminam
+    focos:
+      servicos: { rola: [848, 1136] }          # faixa em coordenadas da imagem
+  rede:
+    fonte: fig/rede.png            # 414x896, do Figma (frame 0:10610); a largura é completada sozinha
+    focos:
+      busca: [24, 91, 405, 143]
+      primeiro: [21, 189, 409, 327]
+
+passos:
+  - fala: "Na tela inicial, role até Serviços."
+    tela: home
+    rolar: 370
+    foco: servicos
+    pausa: 0.4
+  - fala: "Toque em Rede."
+    toque: [60, 563]
+    vai_para: rede
+  - fala: "Aparece a lista dos estabelecimentos credenciados."
+    pausa: 0.4
+  - fala: "No topo, busque por nome, cidade ou bairro."
+    foco: busca
+  - fala: "Em cada um, você pode ligar ou ver no mapa onde fica."
+    foco: primeiro
+  - fala: "Pronto! É só escolher o estabelecimento."
+
+poster: { passo: 4, apos: 1.0 }
