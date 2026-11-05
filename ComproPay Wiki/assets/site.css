@@ -2,6 +2,8 @@
    e só com tokens --cp-*; a aparência dos componentes é do DS. */
 body { margin: 0; display: flex; flex-direction: column; min-height: 100vh; background: var(--cp-bg-page); color: var(--cp-text-primary); font-family: var(--cp-font-family-base); font-size: var(--cp-type-body-size); line-height: var(--cp-type-body-line); -webkit-font-smoothing: antialiased; }
 .cp-chip { font-family: inherit; }
+/* Chip escondido do filtro (ex.: "Outros"): o botão fica no HTML porque o gerador e o painel leem o nome da categoria dele. */
+.cp-chip[hidden] { display: none; }
 
 .site-header { border-bottom: 1px solid var(--cp-border-subtle); background: var(--cp-surface); }
 .site-header__inner { max-width: var(--cp-container-max); margin-inline: auto; padding: var(--cp-space-4) var(--cp-space-5); display: flex; align-items: center; justify-content: space-between; gap: var(--cp-space-6); }
@@ -22,7 +24,7 @@ main:focus { outline: none; } /* recebe foco só pelo "Pular para o conteúdo" *
 
 /* Faixa de topo: título e busca sobre o tom mais claro da primária. */
 .faq-hero { background: var(--cp-primary-50); border-bottom: var(--cp-border-hairline) solid var(--cp-primary-100); padding-block: var(--cp-space-12) var(--cp-space-10); text-align: center; }
-.faq-hero h1 { margin: 0; font-size: var(--cp-type-h2-size); font-weight: var(--cp-font-weight-bold); }
+.faq-hero h1 { margin: 0; font-size: var(--cp-type-h2-size); line-height: var(--cp-type-h2-line); font-weight: var(--cp-font-weight-bold); }
 .faq-search { max-width: 36rem; margin: var(--cp-space-6) auto 0; text-align: left; }
 
 .faq-corpo { padding-block: var(--cp-space-8) var(--cp-space-16); }
@@ -30,6 +32,9 @@ main:focus { outline: none; } /* recebe foco só pelo "Pular para o conteúdo" *
 /* Filtro: quebra em linhas no desktop; no celular vira uma fileira só, com rolagem lateral. */
 .category-filter { display: flex; flex-wrap: wrap; gap: var(--cp-space-2); max-width: 48rem; margin-inline: auto; }
 @media (max-width: 767.98px) {
+  .faq-hero { padding-block: var(--cp-space-8) var(--cp-space-6); }
+  /* sem isso o snap encosta o primeiro chip na borda da tela e come o respiro lateral */
+  .category-filter { scroll-padding-inline: var(--cp-page-gutter); }
   .category-filter { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: var(--cp-space-2); margin-inline: calc(var(--cp-page-gutter) * -1); padding-inline: var(--cp-page-gutter); }
   .category-filter .cp-chip { flex: 0 0 auto; scroll-snap-align: start; }
 }
@@ -93,7 +98,7 @@ main:focus { outline: none; } /* recebe foco só pelo "Pular para o conteúdo" *
 .pergunta .cp-crumb { margin-bottom: var(--cp-space-6); }
 .pergunta__selos { display: flex; flex-wrap: wrap; gap: var(--cp-space-2); margin: 0 0 var(--cp-space-3); }
 .pergunta__selos .cp-badge { text-decoration: none; }
-.pergunta__titulo { margin: 0 0 var(--cp-space-2); font-size: var(--cp-type-h2-size); font-weight: var(--cp-font-weight-bold); }
+.pergunta__titulo { margin: 0 0 var(--cp-space-2); font-size: var(--cp-type-h2-size); line-height: var(--cp-type-h2-line); font-weight: var(--cp-font-weight-bold); }
 .pergunta__meta { margin: 0 0 var(--cp-space-4); color: var(--cp-text-secondary); font-size: var(--cp-type-body-sm-size); }
 .pergunta__corpo { margin-top: var(--cp-space-6); }
 .pergunta__corpo p { margin: 0 0 var(--cp-space-3); }
@@ -164,3 +169,6 @@ main:focus { outline: none; } /* recebe foco só pelo "Pular para o conteúdo" *
 .faq-video--espera iframe { opacity: 0; }
 @media (prefers-reduced-motion: reduce) { .faq-video--espera iframe { opacity: 1; } }
 
+
+/* O "Pular para o conteúdo" fica escondido acima da tela, mas a sombra dele vazava para dentro (borrão no topo, bem visível no celular). */
+.cp-skip-link:not(:focus) { box-shadow: none; }
