@@ -19,7 +19,7 @@ telas:
       alinhar: centro
     - rect: [140, 247, 290, 269]
       modo: trocar
-      texto: Eduardo Silva
+      texto: Eduardo Souza
       tam: 15
       peso: Regular
       cor: [255, 255, 255]
@@ -38,7 +38,7 @@ telas:
       alinhar: centro
     - rect: [140, 247, 290, 269]
       modo: trocar
-      texto: Eduardo Silva
+      texto: Eduardo Souza
       tam: 15
       peso: Regular
       cor: [255, 255, 255]
@@ -52,7 +52,7 @@ telas:
       alinhar: dir
     - rect: [281, 378, 392, 396]
       modo: trocar
-      texto: Eduardo Silva
+      texto: Eduardo Souza
       tam: 11
       peso: Regular
       cor: [160, 160, 166]
@@ -88,4 +88,6 @@ passos:
   vai_para: dados
 - fala: Em Meus dados, toque em E-mail.
   toque: [215, 622]
+- fala: Depois, siga as instruções que aparecem na tela.
+  pausa: 0.4
 poster: {passo: 2, apos: 0.3}
