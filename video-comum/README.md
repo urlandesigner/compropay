@@ -50,3 +50,8 @@ custam tempo quando não se sabe:
 
 Subir servidor local pode esbarrar na permissão da sessão. Se esbarrar, vá de
 `figma_capture_screenshot`, uma tela por vez.
+
+## Montar o vídeo
+
+`montador/` tem o programa que monta os vídeos a partir de um `roteiro.yaml`,
+sem escrever um `build.py` novo a cada vez. Veja `montador/README.md`.
