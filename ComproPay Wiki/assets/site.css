@@ -2,6 +2,8 @@
    e só com tokens --cp-*; a aparência dos componentes é do DS. */
 body { margin: 0; display: flex; flex-direction: column; min-height: 100vh; background: var(--cp-bg-page); color: var(--cp-text-primary); font-family: var(--cp-font-family-base); font-size: var(--cp-type-body-size); line-height: var(--cp-type-body-line); -webkit-font-smoothing: antialiased; }
 .cp-chip { font-family: inherit; }
+/* Chip escondido do filtro (ex.: "Outros"): o botão fica no HTML porque o gerador e o painel leem o nome da categoria dele. */
+.cp-chip[hidden] { display: none; }
 
 .site-header { border-bottom: 1px solid var(--cp-border-subtle); background: var(--cp-surface); }
 .site-header__inner { max-width: var(--cp-container-max); margin-inline: auto; padding: var(--cp-space-4) var(--cp-space-5); display: flex; align-items: center; justify-content: space-between; gap: var(--cp-space-6); }
