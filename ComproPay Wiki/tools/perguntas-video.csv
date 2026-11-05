@@ -1,31 +1,22 @@
 numero,pergunta,categoria,situacao,arquivo
 1,Como se cadastrar no app ComproPay?,Cadastros,App 2.0,cadastro.mp4
 2,Como cadastrar um Cartão Comprocard?,Cadastros,App 2.0,cadastrar-cartao.mp4
-3,Como cadastrar um Cartão de Crédito?,Cadastros,YouTube antigo,
-4,Como consultar o saldo de seus Cartões Comprocard?,Consultas,App 2.0,saldo.mp4
-5,Como consultar a rede credenciada ComproPay e Comprocard?,Consultas,App 2.0,rede-credenciada.mp4
-6,Como favoritar um estabelecimento?,Consultas,App 2.0,favoritar.mp4
-7,Como adicionar dinheiro via boleto?,Adicionar dinheiro na carteira,YouTube antigo,
-8,Como adicionar dinheiro via TED ou DOC?,Adicionar dinheiro na carteira,YouTube antigo,
-9,Como adicionar dinheiro via Cartão Comprocard?,Adicionar dinheiro na carteira,YouTube antigo,
-10,Como retirar dinheiro da carteira digital?,Retirar dinheiro da carteira,Sem vídeo,
-11,Como bloquear e desbloquear seus Cartões Comprocard?,Segurança,YouTube antigo,
-12,Como alterar um e-mail cadastrado?,Editar Perfil,YouTube antigo,
-13,Como realizar uma cobrança?,Transações,YouTube antigo,
-14,Como recuperar senha da conta ComproPay?,Segurança,YouTube antigo,
-15,Como cadastrar uma conta bancária?,Cadastros,YouTube antigo,
-16,Quais bandeiras de cartão são aceitas pela ComproPay?,Consultas,YouTube antigo,
-17,Quais bancos são aceitos pelo ComproPay?,Consultas,YouTube antigo,
-18,Como efetuar um pagamento via QRCode?,Transações,App 2.0,pagar-qrcode.mp4
-19,Como sacar dinheiro de seu Cartão Comprocard?,Retirar dinheiro da carteira,YouTube antigo,
-20,Como me cadastrar para o módulo OAB.Pay?,OAB.Pay,YouTube antigo,
-21,Como ganhar cashback para o Programa Anuidade Zero OAB.Pay?,OAB.Pay,YouTube antigo,
-22,Como pagar meu ticket de estacionamento do Shopping Vitória?,Estacionamento,Sem vídeo,
-23,Consigo sacar o saldo de meu Cartão Comprocard?,Consultas,Sem vídeo,
-24,Como Pagar o Estacionamento Rotativo de Vitória?,Estacionamento,YouTube antigo,
-25,Como Avaliar o Aplicativo ComproPay?,Outros,YouTube antigo,
-26,Como Cadastrar Digital ou FACE ID Para Usar nas Transações?,Cadastros,Sem vídeo,
-27,Como Conferir Transações Realizadas?,Consultas,App 2.0,extrato.mp4
-28,Como acessar a Central de Ajuda?,Outros,App 2.0,central-de-ajuda.mp4
-29,O que tem na tela inicial do ComproPay?,Outros,App 2.0,home.mp4
-30,Como ver as vantagens e ofertas do ComproPay?,Outros,App 2.0,vantagens.mp4
+3,Como consultar o saldo de seus Cartões Comprocard?,Consultas,App 2.0,saldo.mp4
+4,Como consultar a rede credenciada ComproPay e Comprocard?,Consultas,App 2.0,rede-credenciada.mp4
+5,Como favoritar um estabelecimento?,Consultas,App 2.0,favoritar.mp4
+6,Como adicionar dinheiro via TED ou DOC?,Adicionar dinheiro na carteira,App 2.0,adicionar-ted-doc.mp4
+7,Como retirar dinheiro da carteira digital?,Retirar dinheiro da carteira,Sem vídeo,
+8,Como bloquear e desbloquear seus Cartões Comprocard?,Segurança,App 2.0,bloquear-cartao.mp4
+9,Como alterar um e-mail cadastrado?,Editar Perfil,YouTube antigo,
+10,Como realizar uma cobrança?,Transações,App 2.0,realizar-cobranca.mp4
+11,Como recuperar senha da conta ComproPay?,Segurança,YouTube antigo,
+12,Como cadastrar uma conta bancária?,Cadastros,YouTube antigo,
+13,Como efetuar um pagamento via QRCode?,Transações,App 2.0,pagar-qrcode.mp4
+14,Como sacar dinheiro de seu Cartão Comprocard?,Retirar dinheiro da carteira,YouTube antigo,
+15,Consigo sacar o saldo de meu Cartão Comprocard?,Consultas,Sem vídeo,
+16,Como Avaliar o Aplicativo ComproPay?,Outros,App 2.0,avaliar-aplicativo.mp4
+17,Como Cadastrar Digital ou FACE ID Para Usar nas Transações?,Cadastros,Sem vídeo,
+18,Como Conferir Transações Realizadas?,Consultas,App 2.0,extrato.mp4
+19,Como acessar a Central de Ajuda?,Outros,App 2.0,central-de-ajuda.mp4
+20,O que tem na tela inicial do ComproPay?,Outros,App 2.0,home.mp4
+21,Como ver as vantagens e ofertas do ComproPay?,Outros,App 2.0,vantagens.mp4

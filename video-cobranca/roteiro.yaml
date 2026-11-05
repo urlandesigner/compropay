@@ -1,0 +1,43 @@
+# Como realizar uma cobrança?
+# Home do Figma 2.0 + telas reais do app, capturadas do iPhone em 05/11/2026 (PNG 2x, video-comum/capturar).
+# Coordenadas na tela do aparelho (430x932). As capturas ficam em capturas-iphone/ (fora do Git, têm dado real).
+video: realizar-cobranca
+rotulo: Realizar uma cobrança
+voz: pf_dora
+aparelho: { largura: 430, altura: 932 }
+
+telas:
+  home:
+    fonte: ../video-rede/fig/home.png     # Figma 2.0 (frame 7276:89822), 430x1255
+    fixo_topo: 62
+    fixo_base: 120
+    fim_conteudo: 1152
+  qr:
+    fonte: ../capturas-iphone/realizar-cobranca/01-qr.png
+    captura: true
+    barra_status: { de: ../video-rede/fig/home.png }
+    mascara:
+      - { rect: [181, 367, 315, 389], modo: trocar, texto: "Eduardo Souza", tam: 15, peso: Bold, cor: [255, 255, 255], alinhar: esq }
+      - { rect: [181, 390, 249, 410], modo: trocar, texto: "@eduardo", tam: 14, peso: Regular, cor: [214, 196, 240], alinhar: esq }
+  valor:
+    fonte: ../capturas-iphone/realizar-cobranca/02-valor.png
+    captura: true
+    barra_status: { de: ../video-rede/fig/home.png }
+    focos:
+      valor: [24, 165, 267, 254]
+      enviar: [18, 842, 412, 905]
+
+passos:
+  - fala: "Na tela inicial, toque em Cobrar."
+    tela: home
+    toque: [343, 426]
+    vai_para: qr
+  - fala: "Toque em Gerar código com valor."
+    toque: [214, 703]
+    vai_para: valor
+  - fala: "Digite o valor que você quer cobrar."
+    foco: valor
+  - fala: "Depois, toque em Enviar cobrança."
+    foco: enviar
+
+poster: { passo: 3, apos: 1.0 }

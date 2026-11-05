@@ -1,0 +1,49 @@
+# Como adicionar dinheiro via TED ou DOC?
+# Home do Figma 2.0 + telas reais do app, capturadas do iPhone em 05/11/2026 (PNG 2x, video-comum/capturar).
+# Coordenadas na tela do aparelho (430x932). As capturas ficam em capturas-iphone/ (fora do Git, têm dado real).
+video: adicionar-ted-doc
+rotulo: Adicionar dinheiro por TED ou DOC
+voz: pf_dora
+aparelho: { largura: 430, altura: 932 }
+
+telas:
+  home:
+    fonte: ../video-rede/fig/home.png     # Figma 2.0 (frame 7276:89822), 430x1255
+    fixo_topo: 62
+    fixo_base: 120
+    fim_conteudo: 1152
+  opcoes:
+    fonte: ../capturas-iphone/adicionar-ted-doc/01-opcoes.png
+    captura: true
+    barra_status: { de: ../video-rede/fig/home.png }
+  dados:
+    fonte: ../capturas-iphone/adicionar-ted-doc/02-dados.png
+    captura: true
+    barra_status: { de: ../video-rede/fig/home.png }
+    focos:
+      dados: [18, 334, 412, 776]
+      copiar: [323, 346, 400, 614]
+      aviso: [47, 708, 382, 750]
+    mascara:
+      - { rect: [31, 449, 101, 474], modo: borrar, raio: 9 }
+      - { rect: [31, 519, 107, 543], modo: borrar, raio: 9 }
+      - { rect: [31, 588, 198, 613], modo: borrar, raio: 9 }
+
+passos:
+  - fala: "Na tela inicial, toque em Depositar."
+    tela: home
+    toque: [208, 426]
+    vai_para: opcoes
+  - fala: "Escolha Transferência bancária."
+    toque: [216, 267]
+    vai_para: dados
+  - fala: "Aparecem os dados da conta do ComproPay."
+    foco: dados
+  - fala: "Toque em Copiar para guardar cada informação."
+    foco: copiar
+  - fala: "Depois, cole no aplicativo do seu banco e faça a transferência."
+    pausa: 0.4
+  - fala: "Atenção: só aceitamos depósitos de uma conta no seu nome."
+    foco: aviso
+
+poster: { passo: 2, apos: 1.0 }
