@@ -1,0 +1,43 @@
+# Como consultar a rede credenciada ComproPay e Comprocard?
+# Home do Figma 2.0 + lista real do app, capturada do iPhone (03/11/2026).
+# O roteiro.yaml desta pasta continua sendo a versão toda do Figma, que é a publicada hoje.
+# Coordenadas na tela do aparelho (430x932), com a rolagem já aplicada.
+video: rede-credenciada
+rotulo: Consultar a rede credenciada
+voz: pf_dora
+aparelho: { largura: 430, altura: 932 }
+
+telas:
+  home:
+    fonte: fig/home.png            # 430x1255, do Figma 2.0 (frame 7276:89822)
+    fixo_topo: 62
+    fixo_base: 120
+    fim_conteudo: 1152
+    focos:
+      servicos: { rola: [848, 1136] }
+  lista:
+    fonte: iphone/rede-lista.jpg   # print da janela do Espelhamento do iPhone, sem editar
+    captura: true
+    barra_status: { de: fig/home.png }
+    focos:
+      busca: [14, 90, 414, 142]
+      estabelecimento: [14, 530, 414, 646]    # "DROGARIA MOURA", com o telefone
+
+passos:
+  - fala: "Na tela inicial, role até Serviços."
+    tela: home
+    rolar: 340
+    foco: servicos
+    pausa: 0.4
+  - fala: "Toque em Rede."
+    toque: [60, 593]
+    vai_para: lista
+  - fala: "Aparece a lista dos estabelecimentos credenciados."
+    pausa: 0.4
+  - fala: "No topo, busque por nome, cidade ou bairro."
+    foco: busca
+  - fala: "Cada um mostra o tipo, o bairro e a cidade, e o telefone, quando tem."
+    foco: estabelecimento
+  - fala: "Pronto! É só escolher o estabelecimento."
+
+poster: { passo: 4, apos: 1.0 }

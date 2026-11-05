@@ -1,0 +1,91 @@
+# Gerado a partir do que foi capturado no iPhone (capturas-iphone/, fora do Git).
+# Dados pessoais trocados por fictícios nas máscaras. Confira revisao.jpg antes de publicar.
+video: alterar-email
+rotulo: Alterar o e-mail
+aparelho: {largura: 430, altura: 932}
+telas:
+  home: {fonte: ../video-home/fig/home.png, fixo_topo: 62, fixo_base: 120, fim_conteudo: 1152}
+  perfil:
+    fonte: ../capturas-iphone/alterar-email/02-perfil.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    mascara:
+    - rect: [178, 219, 252, 245]
+      modo: trocar
+      texto: '@eduardo'
+      tam: 18
+      peso: Bold
+      cor: [255, 255, 255]
+      alinhar: centro
+    - rect: [140, 247, 290, 269]
+      modo: trocar
+      texto: Eduardo Silva
+      tam: 15
+      peso: Regular
+      cor: [255, 255, 255]
+      alinhar: centro
+  dados:
+    fonte: ../capturas-iphone/alterar-email/03-meus-dados.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    mascara:
+    - rect: [178, 219, 252, 245]
+      modo: trocar
+      texto: '@eduardo'
+      tam: 18
+      peso: Bold
+      cor: [255, 255, 255]
+      alinhar: centro
+    - rect: [140, 247, 290, 269]
+      modo: trocar
+      texto: Eduardo Silva
+      tam: 15
+      peso: Regular
+      cor: [255, 255, 255]
+      alinhar: centro
+    - rect: [345, 320, 392, 338]
+      modo: trocar
+      texto: '@eduardo'
+      tam: 11
+      peso: Regular
+      cor: [160, 160, 166]
+      alinhar: dir
+    - rect: [281, 378, 392, 396]
+      modo: trocar
+      texto: Eduardo Silva
+      tam: 11
+      peso: Regular
+      cor: [160, 160, 166]
+      alinhar: dir
+    - rect: [305, 554, 392, 572]
+      modo: trocar
+      texto: 123.***.***-45
+      tam: 11
+      peso: Regular
+      cor: [160, 160, 166]
+      alinhar: dir
+    - rect: [281, 613, 392, 631]
+      modo: trocar
+      texto: eduardo@email.com
+      tam: 11
+      peso: Regular
+      cor: [160, 160, 166]
+      alinhar: dir
+    - rect: [333, 665, 392, 693]
+      modo: trocar
+      texto: (27) 98888-0000
+      tam: 10
+      peso: Regular
+      cor: [160, 160, 166]
+      alinhar: dir
+passos:
+- fala: Na tela inicial, toque na sua foto.
+  tela: home
+  toque: [35, 93]
+  vai_para: perfil
+- fala: Em Perfil, toque em Meus dados.
+  toque: [215, 355]
+  vai_para: dados
+- fala: Em Meus dados, toque em E-mail.
+  toque: [215, 622]
+poster: {passo: 2, apos: 0.3}

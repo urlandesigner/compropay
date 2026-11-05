@@ -1,0 +1,46 @@
+# Gerado a partir do que foi capturado no iPhone (capturas-iphone/, fora do Git).
+# Dados pessoais trocados por fictícios nas máscaras. Confira revisao.jpg antes de publicar.
+video: retirar-dinheiro
+rotulo: Retirar dinheiro
+aparelho: {largura: 430, altura: 932}
+telas:
+  opcoes:
+    fonte: ../capturas-iphone/retirar-dinheiro/02-retirar-opcoes.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+  origem:
+    fonte: ../capturas-iphone/retirar-dinheiro/03-origem-da-retirada.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    mascara:
+    - rect: [96, 241, 148, 256]
+      modo: trocar
+      texto: R$ 2,50
+      tam: 12
+      peso: SemiBold
+      cor: [40, 40, 45]
+      alinhar: esq
+  aviso:
+    fonte: ../capturas-iphone/retirar-dinheiro/04-aviso-saldo-minimo.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    mascara:
+    - rect: [96, 241, 148, 256]
+      modo: trocar
+      texto: R$ 2,50
+      tam: 12
+      peso: SemiBold
+      cor: [25, 25, 28]
+      alinhar: esq
+passos:
+- fala: Em Retirar, escolha Transferência programada.
+  tela: opcoes
+  toque: [215, 256]
+  vai_para: origem
+- fala: 'Selecione a origem: Meu saldo em carteira.'
+  toque: [215, 237]
+  vai_para: aviso
+- {fala: 'O valor mínimo para retirar é de dez reais. Abaixo disso, o app avisa.'}
+- fala: Toque em Entendi.
+  toque: [215, 552]
+poster: {passo: 2, apos: 0.8}
