@@ -1,0 +1,42 @@
+# Como avaliar o aplicativo ComproPay?
+# Home do Figma 2.0 + telas reais do app, capturadas do iPhone em 05/11/2026 (PNG 2x, video-comum/capturar).
+# Coordenadas na tela do aparelho (430x932). As capturas ficam em capturas-iphone/ (fora do Git, têm dado real).
+video: avaliar-aplicativo
+rotulo: Avaliar o aplicativo
+voz: pf_dora
+aparelho: { largura: 430, altura: 932 }
+
+telas:
+  home:
+    fonte: ../video-rede/fig/home.png     # Figma 2.0 (frame 7276:89822), 430x1255
+    fixo_topo: 62
+    fixo_base: 120
+    fim_conteudo: 1152
+  perfil:
+    fonte: ../capturas-iphone/avaliar-aplicativo/02-perfil.png
+    captura: true
+    barra_status: { de: ../video-rede/fig/home.png }
+    focos:
+      avaliar: [18, 423, 412, 498]
+  loja:
+    fonte: ../capturas-iphone/avaliar-aplicativo/01-loja.png
+    captura: true
+    barra_status: { de: ../video-rede/fig/home.png }
+    mascara:
+      - { rect: [146, 202, 232, 240], modo: cobrir, cor: [0, 0, 0] }
+
+passos:
+  - fala: "Na tela inicial, toque na sua foto, no canto de cima."
+    tela: home
+    toque: [36, 93]
+    vai_para: perfil
+  - fala: "No Perfil, a opção Avaliar o aplicativo fica perto do fim da lista."
+    foco: avaliar
+  - fala: "Toque nessa opção."
+    toque: [216, 462]
+    vai_para: loja
+  - fala: "Você vai direto para a página do ComproPay, na loja de aplicativos."
+    pausa: 0.5
+  - fala: "Lá, é só escolher as estrelas."
+
+poster: { passo: 3, apos: 1.0 }
