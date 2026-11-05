@@ -43,4 +43,6 @@ passos:
 - {fala: 'O valor mínimo para retirar é de dez reais. Abaixo disso, o app avisa.'}
 - fala: Toque em Entendi.
   toque: [215, 552]
+- fala: Com saldo suficiente, siga as instruções que aparecem na tela.
+  pausa: 0.4
 poster: {passo: 2, apos: 0.8}
