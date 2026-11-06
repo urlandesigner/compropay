@@ -41,12 +41,18 @@
             </div>
           </div>
         </form>
-        <!-- Sugestões: termos que existem nas respostas. Trocar à vontade. -->
-        <p class="faq-sugestoes"><span class="faq-sugestoes__rotulo">Sugestões:</span>
-          <a class="cp-link" href="?q=cartao" data-sugestao="cartao">Cartão</a>
-          <a class="cp-link" href="?q=senha" data-sugestao="senha">Senha</a>
-          <a class="cp-link" href="?q=saldo" data-sugestao="saldo">Saldo</a>
-        </p>
+        <!-- Mais buscados: 3 cards gerados por tools/gerar-perguntas.py a partir de data-mais-buscada="1|2|3"
+             (em conteudo/perguntas.html). Somem enquanto há busca ou categoria ativa. -->
+        <section class="faq-mais-buscados" id="faq-mais-buscados" aria-labelledby="faq-mais-buscados-titulo">
+          <h2 id="faq-mais-buscados-titulo" class="faq-mais-buscados__titulo">Mais buscados</h2>
+          <ul class="faq-mais-buscados__lista">
+            <!-- MAIS-BUSCADOS:INICIO -->
+            <li><a class="cp-panel faq-popular" href="perguntas/como-recuperar-senha-da-conta-compropay.html"><span class="faq-popular__titulo">Como recuperar senha da conta ComproPay?</span><svg class="cp-icon cp-icon--md faq-popular__seta" aria-hidden="true"><use href="DS%20wiki/icons/cp-icons.svg#cp-chevron-right"/></svg></a></li>
+            <li><a class="cp-panel faq-popular" href="perguntas/como-consultar-o-saldo-de-seus-cartoes-comprocard.html"><span class="faq-popular__titulo">Como consultar o saldo de seus Cartões Comprocard?</span><svg class="cp-icon cp-icon--md faq-popular__seta" aria-hidden="true"><use href="DS%20wiki/icons/cp-icons.svg#cp-chevron-right"/></svg></a></li>
+            <li><a class="cp-panel faq-popular" href="perguntas/como-retirar-dinheiro-da-carteira-digital.html"><span class="faq-popular__titulo">Como retirar dinheiro da carteira digital?</span><svg class="cp-icon cp-icon--md faq-popular__seta" aria-hidden="true"><use href="DS%20wiki/icons/cp-icons.svg#cp-chevron-right"/></svg></a></li>
+          <!-- MAIS-BUSCADOS:FIM -->
+          </ul>
+        </section>
       </div>
     </section>
 

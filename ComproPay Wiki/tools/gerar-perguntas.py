@@ -8,6 +8,7 @@ Cada <details> da fonte vira uma página com migalhas, passo a passo numerado, v
 "Isso ajudou?", perguntas relacionadas e o bloco de atendimento, e uma linha na lista do index.html.
 Data opcional: data-atualizado="2026-10-28" no <details> mostra "Atualizado em 28/10/2026" na página
 e põe a pergunta em "Atualizadas recentemente" no index.html (as 5 mais recentes).
+Mais buscados: data-mais-buscada="1" (ou 2, 3) no <details> põe a pergunta num dos 3 cards sob a busca do index.html.
 """
 import html, re, sys
 from pathlib import Path
@@ -37,7 +38,8 @@ itens = []
 for m in re.finditer(r'<details id="([^"]+)" data-categoria="([^"]*)"([^>]*)>\s*<summary>.*?<span class="faq-q__titulo">(.*?)</span>.*?</summary>\s*<div class="cp-accordion__body">\n(.*?)\n            </div>\s*</details>', fonte, re.S):
     i, cat, extra, titulo, corpo = m.groups()
     atual = re.search(r'data-atualizado="(\d{4})-(\d{2})-(\d{2})"', extra)
-    itens.append(dict(id=i, cat=cat, titulo=titulo, corpo=corpo,
+    mais = re.search(r'data-mais-buscada="(\d+)"', extra)
+    itens.append(dict(id=i, cat=cat, titulo=titulo, corpo=corpo, mais=int(mais.group(1)) if mais else 0,
                       atualizado=f'{atual.group(3)}/{atual.group(2)}/{atual.group(1)}' if atual else '',
                       iso=f'{atual.group(1)}-{atual.group(2)}-{atual.group(3)}' if atual else ''))
 if not itens:
@@ -88,13 +90,16 @@ PAGINA = '''<!doctype html>
 
   <main id="conteudo" tabindex="-1">
     <div class="cp-page pergunta">
-      <nav class="cp-crumb" aria-label="Breadcrumb">
-        <ol>
-          <li><a href="../">Ajuda</a></li>
-          <li><a href="../?categoria={cat}">{cat_nome}</a></li>
-          <li><span aria-current="page">{titulo}</span></li>
-        </ol>
-      </nav>
+      <div class="pergunta__topo">
+        <a class="cp-btn cp-btn--secondary cp-btn--sm cp-btn--voltar" href="../" data-voltar aria-label="Voltar"><svg class="cp-icon cp-icon--sm" aria-hidden="true"><use href="../DS%20wiki/icons/cp-icons.svg#cp-chevron-left"/></svg></a>
+        <nav class="cp-crumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="../">Ajuda</a></li>
+            <li><a href="../?categoria={cat}">{cat_nome}</a></li>
+            <li><span aria-current="page">{titulo}</span></li>
+          </ol>
+        </nav>
+      </div>
 
       <article class="pergunta__artigo" id="{id}" data-faq-item>
         <p class="pergunta__selos"><a class="cp-badge cp-badge--soft" href="../?categoria={cat}">{cat_nome}</a></p>
@@ -172,7 +177,18 @@ li_recentes = '\n'.join(
     f' <span class="cp-badge cp-badge--soft">{categorias[it["cat"]]}</span>'
     f' <time datetime="{it["iso"]}">{it["atualizado"]}</time></li>' for it in recentes)
 
+# Mais buscados: os 3 cards sob a busca, na ordem de data-mais-buscada.
+mais_buscados = sorted([it for it in itens if it['mais']], key=lambda it: it['mais'])
+if len(mais_buscados) > 3:
+    print(f'Aviso: {len(mais_buscados)} perguntas com data-mais-buscada; só as 3 primeiras entram.', file=sys.stderr)
+    mais_buscados = mais_buscados[:3]
+li_mais = '\n'.join(
+    f'            <li><a class="cp-panel faq-popular" href="perguntas/{it["id"]}.html"><span class="faq-popular__titulo">{it["titulo"]}</span>'
+    f'<svg class="cp-icon cp-icon--md faq-popular__seta" aria-hidden="true"><use href="DS%20wiki/icons/cp-icons.svg#cp-chevron-right"/></svg></a></li>'
+    for it in mais_buscados)
+
 saida = entre(src, '<!-- LISTA:INICIO (gerada por tools/gerar-perguntas.py, não edite) -->', '<!-- LISTA:FIM -->', '\n'.join(linhas))
+saida = entre(saida, '<!-- MAIS-BUSCADOS:INICIO -->', '<!-- MAIS-BUSCADOS:FIM -->', li_mais)
 saida = entre(saida, '<!-- RECENTES:INICIO -->', '<!-- RECENTES:FIM -->', li_recentes) if li_recentes else entre(saida, '<!-- RECENTES:INICIO -->', '<!-- RECENTES:FIM -->', '')
 INDEX.write_text(saida, encoding='utf-8')
-print(f'{len(itens)} itens na lista, {len(recentes)} em "Atualizadas recentemente"')
+print(f'{len(itens)} itens na lista, {len(recentes)} em "Atualizadas recentemente", {len(mais_buscados)} em "Mais buscados"')
