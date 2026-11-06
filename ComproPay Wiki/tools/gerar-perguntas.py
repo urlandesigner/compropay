@@ -64,6 +64,27 @@ def passo_a_passo(corpo):
     fecha()
     return '\n'.join(saida)
 
+def video_antes_da_lista(corpo):
+    """O vídeo é o formato principal da resposta: sobe para logo antes da lista de passos que ele ilustra.
+
+    Na fonte (conteudo/perguntas.html) o vídeo fica no fim de cada seção, depois dos passos; aqui ele
+    vai para antes da lista, e o fechamento ("Pronto!") continua depois dela. Uma resposta com duas
+    listas e dois vídeos (bloquear e desbloquear) leva cada vídeo para antes da sua lista.
+    """
+    padrao = re.compile(r'<div class="faq-video">.*?</div>', re.S)
+    pos = 0
+    while True:
+        v = padrao.search(corpo, pos)
+        if not v:
+            return corpo
+        lista = corpo.rfind('<ol ', pos, v.start())
+        if lista == -1:                       # vídeo sem lista antes dele: fica onde está
+            pos = v.end()
+            continue
+        bloco = v.group(0)
+        corpo = corpo[:lista] + bloco + '\n' + corpo[lista:v.start()].rstrip('\n') + corpo[v.end():]
+        pos = lista + len(bloco)
+
 def resumo(corpo):
     p = re.search(r'<p>(.*?)</p>', corpo, re.S)
     t = html.unescape(re.sub(r'<[^>]+>', '', p.group(1))) if p else ''
@@ -102,7 +123,6 @@ PAGINA = '''<!doctype html>
       </div>
 
       <article class="pergunta__artigo" id="{id}" data-faq-item>
-        <p class="pergunta__selos"><a class="cp-badge cp-badge--soft" href="../?categoria={cat}">{cat_nome}</a></p>
         <h1 class="pergunta__titulo">{titulo}</h1>{atualizado}
         <div class="pergunta__corpo">
 {corpo}
@@ -145,7 +165,7 @@ for k, it in enumerate(itens):
       </section>
 '''
     atual = f'\n        <p class="pergunta__meta">Atualizado em {it["atualizado"]}</p>' if it['atualizado'] else ''
-    corpo = passo_a_passo(it['corpo'])
+    corpo = video_antes_da_lista(passo_a_passo(it['corpo']))
     corpo = '\n'.join('          ' + l for l in corpo.split('\n'))
     texto = html.unescape(re.sub(r'<[^>]+>', '', it['titulo']))
     (SAIDA / f'{it["id"]}.html').write_text(PAGINA.format(

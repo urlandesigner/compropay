@@ -35,6 +35,8 @@ python3 tools/gerar-perguntas.py
 
 O gerador refaz `perguntas/` e a lista do `index.html`. Não edite esses dois à mão (a lista fica entre `LISTA:INICIO` e `LISTA:FIM`).
 
+- **Passos e vídeo:** parágrafos `1- texto`, `2- texto`… viram a lista numerada. O vídeo (`.faq-video`) escreva no fim de cada seção, depois dos passos: o gerador o leva para logo antes da lista que ele ilustra.
+- **Links nas respostas:** escreva `<a href="...">` simples; o estilo (roxo do DS, sublinhado) vem de `.pergunta__corpo a` em `assets/site.css`. Link para outra pergunta: só o nome do arquivo, `como-retirar-dinheiro-da-carteira-digital.html`.
 - **WhatsApp:** o número fica em `assets/config.js`. Vazio = botão desativado.
 - **Atualizado em:** `data-atualizado="2026-10-28"` no `<details>` da pergunta, depois rode o gerador.
 - **Atualizadas recentemente:** aparece sozinha no `index.html` quando alguma pergunta tem `data-atualizado` (as 5 mais novas). Sem data nenhuma, a seção some.
