@@ -90,6 +90,29 @@
     setTimeout(pronto, 4000);
   });
 
+  // Movimento: com "menos movimento" ligado no aparelho, nada disto roda e a página aparece inteira e parada.
+  var semMovimento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!semMovimento) {
+    // A entrada em sequência da lista vale só na carga; depois sai, para o filtro não repeti-la a cada letra.
+    var entrada = document.querySelector('.question-list.faq-entrada');
+    if (entrada) setTimeout(function () { entrada.classList.remove('faq-entrada'); }, 1800);
+
+    // Blocos abaixo da dobra aparecem quando entram na tela. Sem IntersectionObserver, ficam como estão.
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('revelado');
+          io.unobserve(e.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      Array.prototype.forEach.call(document.querySelectorAll('.pergunta__relacionadas, .faq-suporte'), function (el) {
+        el.classList.add('js-revelar');
+        io.observe(el);
+      });
+    }
+  }
+
   Array.prototype.forEach.call(document.querySelectorAll('[data-whatsapp-link]'), ligarWhatsApp);
   var aviso = document.querySelector('[data-whatsapp-aviso]');
   if (aviso) aviso.hidden = !!numero;

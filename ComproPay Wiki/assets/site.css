@@ -216,3 +216,78 @@ main:focus { outline: none; } /* recebe foco só pelo "Pular para o conteúdo" *
 
 /* O "Pular para o conteúdo" fica escondido acima da tela, mas a sombra dele vazava para dentro (borrão no topo, bem visível no celular). */
 .cp-skip-link:not(:focus) { box-shadow: none; }
+
+/* ===== Movimento =====
+   Entradas, reveals e transição entre páginas. Só com tokens de movimento do DS (--cp-duration-*, --cp-ease-*),
+   e tudo dentro de "sem preferência por menos movimento": quem pediu menos movimento vê a página parada. */
+
+/* Transição entre páginas (Chrome, Edge e Safari recentes; os demais ignoram). O cabeçalho fica parado. */
+@view-transition { navigation: auto; }
+.site-header { view-transition-name: cabecalho; }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}
+
+@keyframes faq-sobe {
+  from { opacity: 0; transform: translateY(var(--cp-space-3)); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+
+  /* Abertura da home: título, busca e "Mais buscados" entram em sequência. */
+  .faq-hero h1,
+  .faq-search,
+  .faq-mais-buscados__titulo,
+  .faq-mais-buscados__lista li { animation: faq-sobe var(--cp-duration-slower) var(--cp-ease-enter) both; }
+  .faq-search { animation-delay: var(--cp-duration-fast); }
+  .faq-mais-buscados__titulo { animation-delay: calc(var(--cp-duration-fast) * 2); }
+  .faq-mais-buscados__lista li:nth-child(1) { animation-delay: calc(var(--cp-duration-fast) * 2.5); }
+  .faq-mais-buscados__lista li:nth-child(2) { animation-delay: calc(var(--cp-duration-fast) * 3); }
+  .faq-mais-buscados__lista li:nth-child(3) { animation-delay: calc(var(--cp-duration-fast) * 3.5); }
+
+  /* Lista: as 8 primeiras perguntas entram uma depois da outra na carga. A classe sai logo depois (ajuda.js),
+     para o filtro e a busca não repetirem a entrada a cada letra. */
+  .question-list.faq-entrada li { animation: faq-sobe var(--cp-duration-slower) var(--cp-ease-enter) both; }
+  .question-list.faq-entrada li:nth-child(1) { animation-delay: calc(var(--cp-duration-fast) * 4); }
+  .question-list.faq-entrada li:nth-child(2) { animation-delay: calc(var(--cp-duration-fast) * 4.3); }
+  .question-list.faq-entrada li:nth-child(3) { animation-delay: calc(var(--cp-duration-fast) * 4.6); }
+  .question-list.faq-entrada li:nth-child(4) { animation-delay: calc(var(--cp-duration-fast) * 4.9); }
+  .question-list.faq-entrada li:nth-child(5) { animation-delay: calc(var(--cp-duration-fast) * 5.2); }
+  .question-list.faq-entrada li:nth-child(6) { animation-delay: calc(var(--cp-duration-fast) * 5.5); }
+  .question-list.faq-entrada li:nth-child(7) { animation-delay: calc(var(--cp-duration-fast) * 5.8); }
+  .question-list.faq-entrada li:nth-child(8) { animation-delay: calc(var(--cp-duration-fast) * 6.1); }
+
+  /* Cards "Mais buscados": sobem um pouco no hover e afundam ao toque. */
+  .faq-popular { transition: transform var(--cp-transition-surface), box-shadow var(--cp-transition-surface), border-color var(--cp-transition-surface); }
+  .faq-popular:active { transform: scale(.98); }
+
+  /* Filtros: a troca de selecionado deixa de ser seca. */
+  .category-filter .cp-chip { transition: background-color var(--cp-transition-control), border-color var(--cp-transition-control), color var(--cp-transition-control), transform var(--cp-transition-control); }
+
+  /* Página de uma pergunta: o topo entra em sequência e os passos aparecem um a um. */
+  .pergunta__topo, .pergunta__selos, .pergunta__titulo, .pergunta__meta, .pergunta__corpo > :first-child {
+    animation: faq-sobe var(--cp-duration-slower) var(--cp-ease-enter) both;
+  }
+  .pergunta__selos { animation-delay: calc(var(--cp-duration-fast) * .5); }
+  .pergunta__titulo { animation-delay: var(--cp-duration-fast); }
+  .pergunta__passos li { animation: faq-sobe var(--cp-duration-slower) var(--cp-ease-enter) both; }
+  .pergunta__passos li:nth-child(1) { animation-delay: calc(var(--cp-duration-fast) * 2); }
+  .pergunta__passos li:nth-child(2) { animation-delay: calc(var(--cp-duration-fast) * 2.4); }
+  .pergunta__passos li:nth-child(3) { animation-delay: calc(var(--cp-duration-fast) * 2.8); }
+  .pergunta__passos li:nth-child(4) { animation-delay: calc(var(--cp-duration-fast) * 3.2); }
+  .pergunta__passos li:nth-child(n+5) { animation-delay: calc(var(--cp-duration-fast) * 3.6); }
+
+  /* Botão de voltar: a seta anda um pouco para o lado que ela aponta. */
+  .cp-btn--voltar .cp-icon { transition: transform var(--cp-transition-control); }
+
+  /* Reveal ao rolar (ajuda.js marca os blocos): perguntas relacionadas, atendimento e "Isso ajudou?". */
+  .js-revelar { opacity: 0; transform: translateY(var(--cp-space-4)); transition: opacity var(--cp-duration-slower) var(--cp-ease-enter), transform var(--cp-duration-slower) var(--cp-ease-enter); }
+  .js-revelar.revelado { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .faq-popular:hover { transform: translateY(calc(var(--cp-space-1) * -1)); box-shadow: var(--cp-shadow-md); border-color: var(--cp-primary-700); }
+  .cp-btn--voltar:hover .cp-icon { transform: translateX(calc(var(--cp-space-1) * -1)); }
+  .faq-popular:active { transform: scale(.98); } /* depois do hover, para o toque do mouse também afundar */
+}
