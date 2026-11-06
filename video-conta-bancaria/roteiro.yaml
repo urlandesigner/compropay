@@ -1,0 +1,105 @@
+# Gerado a partir do que foi capturado no iPhone (capturas-iphone/, fora do Git).
+# Dados pessoais trocados por fictícios nas máscaras. Confira revisao.jpg antes de publicar.
+# O vídeo para na lista de bancos: nada foi preenchido nem salvo na conta real. As telas
+# depois de "Salvar" não foram capturadas.
+video: conta-bancaria
+rotulo: Cadastrar conta bancária
+aparelho: {largura: 430, altura: 932}
+telas:
+  opcoes:
+    fonte: ../capturas-iphone/retirar-dinheiro/02-retirar-opcoes.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+  origem:
+    fonte: ../capturas-iphone/saque/01-origem-com-saldo.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    mascara:
+    - rect: [96, 240, 162, 258]
+      modo: trocar
+      texto: R$ 750,00
+      tam: 12
+      peso: SemiBold
+      cor: [40, 40, 45]
+      alinhar: esq
+  valor:
+    fonte: ../capturas-iphone/saque/03-valor-digitado.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    mascara:
+    - rect: [28, 167, 236, 188]
+      modo: trocar
+      texto: 'Saldo disponível: R$ 750,00'
+      tam: 12
+      peso: SemiBold
+      cor: [112, 112, 118]
+      alinhar: esq
+  contas:
+    fonte: ../capturas-iphone/saque/04-suas-contas.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+  aviso:
+    fonte: ../capturas-iphone/saque/05-aviso-conferir-dados.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    mascara:
+    - rect: [130, 430, 300, 466]
+      modo: trocar
+      texto: Olá Eduardo
+      tam: 24
+      peso: SemiBold
+      cor: [30, 30, 34]
+      alinhar: centro
+  formulario:
+    fonte: ../capturas-iphone/saque/06-formulario-conta.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    focos:
+      campos: [20, 108, 411, 382]
+    mascara:
+    - rect: [28, 432, 250, 460]
+      modo: trocar
+      texto: Eduardo Souza
+      tam: 17
+      peso: SemiBold
+      cor: [30, 30, 34]
+      alinhar: esq
+    - rect: [28, 507, 175, 533]
+      modo: trocar
+      texto: 123.***.***-45
+      tam: 17
+      peso: SemiBold
+      cor: [112, 116, 128]
+      alinhar: esq
+  banco:
+    fonte: ../capturas-iphone/saque/07-pesquisar-banco.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    focos:
+      busca: [20, 86, 411, 130]
+passos:
+- fala: Em Retirar, escolha Transferência programada.
+  tela: opcoes
+  toque: [215, 256]
+  vai_para: origem
+- fala: 'Selecione a origem: Meu saldo em carteira.'
+  toque: [215, 238]
+  vai_para: valor
+- fala: Informe o valor. O mínimo para retirar é de dez reais. Depois, toque em Continuar.
+  toque: [215, 876]
+  vai_para: contas
+- fala: Sem conta cadastrada, toque em Adicionar conta.
+  toque: [215, 876]
+  vai_para: aviso
+- fala: Leia o aviso e toque em Entendi.
+  toque: [215, 862]
+  vai_para: formulario
+- fala: Preencha o banco, a agência, a conta e o dígito. Seu nome e seu CPF já vêm preenchidos.
+  foco: campos
+- fala: Para escolher o banco, toque em Selecione.
+  toque: [215, 165]
+  vai_para: banco
+- fala: Procure o banco pelo nome ou pelo código.
+  foco: busca
+  pausa: 0.4
+poster: {passo: 5, apos: 0.8}
