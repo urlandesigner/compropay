@@ -123,7 +123,6 @@ PAGINA = '''<!doctype html>
       </div>
 
       <article class="pergunta__artigo" id="{id}" data-faq-item>
-        <p class="pergunta__selos"><a class="cp-badge cp-badge--soft" href="../?categoria={cat}">{cat_nome}</a></p>
         <h1 class="pergunta__titulo">{titulo}</h1>{atualizado}
         <div class="pergunta__corpo">
 {corpo}

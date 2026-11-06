@@ -100,8 +100,6 @@ main:focus { outline: none; } /* recebe foco só pelo "Pular para o conteúdo" *
 .pergunta__topo { display: flex; align-items: center; gap: var(--cp-space-3); margin-bottom: var(--cp-space-6); }
 .pergunta__topo .cp-crumb { min-width: 0; } /* sem isso as migalhas não quebram linha e a página rola para o lado */
 .pergunta__topo .cp-btn--voltar { flex: 0 0 auto; padding: 0; inline-size: var(--cp-control-height-compact); }
-.pergunta__selos { display: flex; flex-wrap: wrap; gap: var(--cp-space-2); margin: 0 0 var(--cp-space-3); }
-.pergunta__selos .cp-badge { text-decoration: none; }
 .pergunta__titulo { margin: 0 0 var(--cp-space-2); font-size: var(--cp-type-h2-size); line-height: var(--cp-type-h2-line); font-weight: var(--cp-font-weight-bold); }
 .pergunta__meta { margin: 0 0 var(--cp-space-4); color: var(--cp-text-secondary); font-size: var(--cp-type-body-sm-size); }
 .pergunta__corpo { margin-top: var(--cp-space-6); }
@@ -272,10 +270,9 @@ main:focus { outline: none; } /* recebe foco só pelo "Pular para o conteúdo" *
   .category-filter .cp-chip { transition: background-color var(--cp-transition-control), border-color var(--cp-transition-control), color var(--cp-transition-control), transform var(--cp-transition-control); }
 
   /* Página de uma pergunta: o topo entra em sequência e os passos aparecem um a um. */
-  .pergunta__topo, .pergunta__selos, .pergunta__titulo, .pergunta__meta, .pergunta__corpo > :first-child {
+  .pergunta__topo, .pergunta__titulo, .pergunta__meta, .pergunta__corpo > :first-child {
     animation: faq-sobe var(--cp-duration-slower) var(--cp-ease-enter) both;
   }
-  .pergunta__selos { animation-delay: calc(var(--cp-duration-fast) * .5); }
   .pergunta__titulo { animation-delay: var(--cp-duration-fast); }
   .pergunta__passos li { animation: faq-sobe var(--cp-duration-slower) var(--cp-ease-enter) both; }
   .pergunta__passos li:nth-child(1) { animation-delay: calc(var(--cp-duration-fast) * 2); }
