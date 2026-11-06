@@ -95,7 +95,11 @@ main:focus { outline: none; } /* recebe foco só pelo "Pular para o conteúdo" *
 
 /* Página de uma pergunta. */
 .pergunta { max-width: 48rem; padding-block: var(--cp-space-6) var(--cp-space-16); }
-.pergunta .cp-crumb { margin-bottom: var(--cp-space-6); }
+/* Botão de voltar + migalhas na mesma linha. É o mesmo botão do "Isso ajudou?" (.cp-btn--secondary
+   .cp-btn--sm, 36px), só que quadrado e com a seta no lugar do texto. */
+.pergunta__topo { display: flex; align-items: center; gap: var(--cp-space-3); margin-bottom: var(--cp-space-6); }
+.pergunta__topo .cp-crumb { min-width: 0; } /* sem isso as migalhas não quebram linha e a página rola para o lado */
+.pergunta__topo .cp-btn--voltar { flex: 0 0 auto; padding: 0; inline-size: var(--cp-control-height-compact); }
 .pergunta__selos { display: flex; flex-wrap: wrap; gap: var(--cp-space-2); margin: 0 0 var(--cp-space-3); }
 .pergunta__selos .cp-badge { text-decoration: none; }
 .pergunta__titulo { margin: 0 0 var(--cp-space-2); font-size: var(--cp-type-h2-size); line-height: var(--cp-type-h2-line); font-weight: var(--cp-font-weight-bold); }
@@ -118,12 +122,17 @@ main:focus { outline: none; } /* recebe foco só pelo "Pular para o conteúdo" *
   .faq-search .cp-input:not(:placeholder-shown) ~ .faq-atalho { display: none; }
 }
 .faq-atalho kbd { font: inherit; font-size: var(--cp-type-caption-size); color: var(--cp-text-secondary); background: var(--cp-bg-muted); border: var(--cp-border-hairline) solid var(--cp-border-subtle); border-radius: var(--cp-radius-sm); padding: 0 var(--cp-space-2); }
-.faq-sugestoes { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--cp-space-2); margin: var(--cp-space-4) 0 0; }
-.faq-sugestoes__rotulo { color: var(--cp-text-secondary); font-size: var(--cp-type-body-sm-size); }
-
-/* Sugestões de busca: links discretos, para não parecerem categoria. */
-.faq-sugestoes { gap: var(--cp-space-2) var(--cp-space-4); }
-.faq-sugestoes .cp-link { font-size: var(--cp-type-body-sm-size); }
+/* Mais buscados: três atalhos sob a busca. Cada card é um painel do DS com o título da pergunta e a seta. */
+.faq-mais-buscados { max-width: 48rem; margin: var(--cp-space-6) auto 0; text-align: left; }
+.faq-mais-buscados__titulo { margin: 0 0 var(--cp-space-2); font-size: var(--cp-type-body-sm-size); font-weight: var(--cp-font-weight-bold); color: var(--cp-text-secondary); }
+.faq-mais-buscados__lista { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--cp-space-3); }
+.faq-popular { display: flex; align-items: center; justify-content: space-between; gap: var(--cp-space-3); height: 100%; padding: var(--cp-space-3) var(--cp-space-4); color: var(--cp-text-primary); text-decoration: none; font-size: var(--cp-type-body-sm-size); }
+.faq-popular__seta { flex: 0 0 auto; color: var(--cp-text-muted); }
+@media (hover: hover) and (pointer: fine) {
+  .faq-popular:hover { color: var(--cp-primary-700); }
+  .faq-popular:hover .faq-popular__seta { color: var(--cp-primary-700); transform: translateX(var(--cp-space-1)); }
+}
+@media (prefers-reduced-motion: no-preference) { .faq-popular__seta { transition: transform var(--cp-transition-control), color var(--cp-transition-control); } }
 
 /* Selo de categoria: some quando a lista já está filtrada por uma categoria. */
 .sem-selo .cp-badge { display: none; }
@@ -169,6 +178,41 @@ main:focus { outline: none; } /* recebe foco só pelo "Pular para o conteúdo" *
 .faq-video--espera iframe { opacity: 0; }
 @media (prefers-reduced-motion: reduce) { .faq-video--espera iframe { opacity: 1; } }
 
+
+/* ===== Celular (até 767px) =====
+   Metas: a lista de perguntas aparecer na primeira tela e todo toque ter 44px (--cp-target-min).
+   Os botões "Voltar" e "Sim/Não" ficam em 36px de propósito, iguais entre si. */
+@media (max-width: 767.98px) {
+  /* Abertura mais baixa: título um degrau menor e menos espaço em volta. */
+  .faq-hero { padding-block: var(--cp-space-6) var(--cp-space-5); }
+  .faq-hero h1 { font-size: var(--cp-type-h3-size); line-height: var(--cp-type-h3-line); }
+  .faq-search { margin-top: var(--cp-space-4); }
+  .pergunta__titulo { font-size: var(--cp-type-h3-size); line-height: var(--cp-type-h3-line); }
+
+  /* Mais buscados: fileira com rolagem lateral até a borda da tela; o card seguinte aparece pela metade. */
+  .faq-mais-buscados { margin-top: var(--cp-space-5); }
+  .faq-mais-buscados__lista {
+    display: flex; gap: var(--cp-space-3); overflow-x: auto; scroll-snap-type: x mandatory;
+    margin-inline: calc(var(--cp-page-gutter) * -1); padding: var(--cp-space-1) var(--cp-page-gutter) var(--cp-space-2);
+    scroll-padding-inline: var(--cp-page-gutter); scrollbar-width: none;
+  }
+  .faq-mais-buscados__lista::-webkit-scrollbar { display: none; }
+  .faq-mais-buscados__lista li { flex: 0 0 78%; scroll-snap-align: start; }
+
+  /* Filtros: 44px de altura, sem barra de rolagem à mostra e com um esmaecido de 16px na borda direita. */
+  .category-filter { scrollbar-width: none; mask-image: linear-gradient(to right, #000 calc(100% - var(--cp-space-4)), transparent); }
+  .category-filter::-webkit-scrollbar { display: none; }
+  .category-filter .cp-chip { min-block-size: var(--cp-target-min); }
+
+  /* Áreas de toque: a área clicável cresce sem mexer no desenho. */
+  .site-header__brand { min-block-size: var(--cp-target-min); min-inline-size: var(--cp-target-min); }
+  .faq-mais .cp-btn { min-block-size: var(--cp-target-min); }
+  .cp-crumb a { display: inline-flex; align-items: center; min-block-size: var(--cp-target-min); }
+
+  /* Migalhas: o último item repete o título logo abaixo. Fica só para leitor de tela. */
+  .pergunta__topo .cp-crumb li:last-child { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .pergunta__topo .cp-crumb li:nth-last-child(2)::after { content: none; }
+}
 
 /* O "Pular para o conteúdo" fica escondido acima da tela, mas a sombra dele vazava para dentro (borrão no topo, bem visível no celular). */
 .cp-skip-link:not(:focus) { box-shadow: none; }

@@ -16,6 +16,14 @@
     }
   }
 
+  // Voltar: se a pessoa veio de outra página da Wiki, volta nela (a lista mantém busca e categoria);
+  // se abriu a pergunta direto por um link, o href leva à página inicial.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-voltar]'), function (a) {
+    a.addEventListener('click', function (e) {
+      if (history.length > 1 && document.referrer.indexOf(location.origin) === 0) { e.preventDefault(); history.back(); }
+    });
+  });
+
   // "Isso ajudou?": guarda só neste navegador; o evento faq:feedback fica pronto para ligar numa métrica.
   var guardado = {};
   try { guardado = JSON.parse(localStorage.getItem('cp-wiki-feedback') || '{}'); } catch (e) {}

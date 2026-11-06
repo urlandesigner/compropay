@@ -8,6 +8,7 @@
   var contador = document.getElementById('faq-contador');
   var campo = document.getElementById('faq-busca');
   var novidades = document.getElementById('faq-novidades');
+  var maisBuscados = document.getElementById('faq-mais-buscados');
   var lista = document.getElementById('faq-lista');
   var maisCaixa = document.getElementById('faq-mais-caixa');
   var mais = document.getElementById('faq-mais');
@@ -95,6 +96,8 @@
     vazio.hidden = achou > 0;
     if (!achou) document.getElementById('faq-vazio-termo').textContent = estado.q.trim() ? '“' + estado.q.trim() + '”' : 'esta categoria';
     if (novidades) novidades.hidden = filtrando || !novidades.querySelector('li');
+    // os 3 cards da home somem enquanto há busca ou categoria: o resultado é que importa
+    if (maisBuscados) maisBuscados.hidden = filtrando || !maisBuscados.querySelector('li');
     // o selo de categoria só informa quando a lista mistura categorias
     lista.classList.toggle('sem-selo', !!estado.cat);
     // "Ver todas" só aparece com a lista curta
@@ -138,16 +141,6 @@
     c.addEventListener('click', function () { estado.cat = c.getAttribute('data-cat') || ''; aplicar(true); });
   });
   campo.addEventListener('input', function () { estado.q = campo.value; aplicar(true); });
-
-  // Sugestões: preenchem a busca com um termo.
-  Array.prototype.forEach.call(document.querySelectorAll('[data-sugestao]'), function (b) {
-    b.addEventListener('click', function (e) {
-      e.preventDefault();
-      campo.value = estado.q = b.getAttribute('data-sugestao');
-      aplicar(true);
-      campo.focus();
-    });
-  });
 
   // Atalho: Ctrl+K (⌘K no Mac) leva o cursor para a busca.
   var mac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
