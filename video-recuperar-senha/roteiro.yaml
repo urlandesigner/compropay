@@ -1,0 +1,36 @@
+# Gerado a partir do que foi capturado no iPhone (capturas-iphone/, fora do Git).
+# Nenhuma destas telas mostra dado pessoal: campos de CPF e senha vazios, sem nome nem e-mail.
+# O vídeo para na tela de recuperação: o botão Continue envia um e-mail de verdade, então não
+# foi tocado. A tela de confirmação, com o e-mail, não foi capturada.
+video: recuperar-senha
+rotulo: Recuperar a senha
+aparelho: {largura: 430, altura: 932}
+telas:
+  login:
+    fonte: ../capturas-iphone/recuperar-senha/01-login.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+  senha:
+    fonte: ../capturas-iphone/recuperar-senha/02-digite-sua-senha.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+  esqueceu:
+    fonte: ../capturas-iphone/recuperar-senha/03-esqueceu-sua-senha.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    focos:
+      campo: [20, 200, 411, 345]
+passos:
+- fala: Na tela de login, digite seu CPF ou CNPJ e toque em Começar.
+  tela: login
+  toque: [215, 834]
+  vai_para: senha
+- fala: Na tela da senha, toque em Esqueceu sua senha.
+  toque: [340, 322]
+  vai_para: esqueceu
+- fala: Informe seu CPF ou CNPJ. O link para criar uma nova senha chega no seu e-mail cadastrado.
+  foco: campo
+- fala: Toque em Continue e siga as instruções que aparecem na tela.
+  toque: [215, 876]
+  pausa: 0.4
+poster: {passo: 2, apos: 0.8}

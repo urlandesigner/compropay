@@ -1,0 +1,40 @@
+# Gerado a partir do que foi capturado no iPhone (capturas-iphone/, fora do Git).
+# Dados pessoais trocados por fictícios nas máscaras. Confira revisao.jpg antes de publicar.
+# O interruptor Face ID fica ligado nesta conta e não foi mexido: ligar de novo abre a
+# janela do sistema, que o Espelhamento do iPhone não mostra. O vídeo para no Perfil.
+video: face-id
+rotulo: Cadastrar Face ID
+aparelho: {largura: 430, altura: 932}
+telas:
+  home: {fonte: ../video-home/fig/home.png, fixo_topo: 62, fixo_base: 120, fim_conteudo: 1152}
+  perfil:
+    fonte: ../capturas-iphone/face-id/01-01-perfil.png
+    captura: true
+    barra_status: {de: ../video-home/fig/home.png, altura: 50}
+    focos:
+      faceid: [20, 482, 410, 551]
+    mascara:
+    - rect: [178, 219, 252, 245]
+      modo: trocar
+      texto: '@eduardo'
+      tam: 18
+      peso: Bold
+      cor: [255, 255, 255]
+      alinhar: centro
+    - rect: [140, 247, 290, 269]
+      modo: trocar
+      texto: Eduardo Souza
+      tam: 15
+      peso: Regular
+      cor: [255, 255, 255]
+      alinhar: centro
+passos:
+- fala: Na tela inicial, toque na sua foto.
+  tela: home
+  toque: [35, 93]
+  vai_para: perfil
+- fala: Em Perfil, fica o interruptor do Face ID. É ele que ativa o reconhecimento do rosto nas transações.
+  foco: faceid
+- fala: Ao ligar, siga as instruções que aparecem na tela.
+  pausa: 0.4
+poster: {passo: 1, apos: 0.8}
