@@ -16,6 +16,10 @@
   var expandida = false;
   var estado = { cat: '', q: '' };
 
+  // Chip escondido por padrão (ex.: "Outros") aparece só enquanto a categoria dele está ativa. Sem isso, a migalha
+  // "Outros" de uma pergunta leva a uma lista filtrada sem nenhum chip marcado (o marcado estaria escondido).
+  Array.prototype.forEach.call(chips, function (c) { if (c.hidden) c.setAttribute('data-oculto', ''); });
+
   // sem acento e sem caixa: "seguranca" acha "Segurança"
   function norma(s) { return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim(); }
   function palavras(s) { return norma(s).match(/[a-z0-9]+/g) || []; }
@@ -92,6 +96,7 @@
     });
     chips.forEach(function (c) {
       c.setAttribute('aria-pressed', String((c.getAttribute('data-cat') || '') === estado.cat));
+      if (c.hasAttribute('data-oculto')) c.hidden = c.getAttribute('data-cat') !== estado.cat;
     });
     vazio.hidden = achou > 0;
     if (!achou) document.getElementById('faq-vazio-termo').textContent = estado.q.trim() ? '“' + estado.q.trim() + '”' : 'esta categoria';

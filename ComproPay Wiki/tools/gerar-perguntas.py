@@ -146,9 +146,17 @@ SAIDA.mkdir(exist_ok=True)
 for antigo in SAIDA.glob('*.html'):
     antigo.unlink()
 
+# Mais buscadas (data-mais-buscada): os 3 cards sob a busca da home e, nas páginas sem nenhuma pergunta
+# relacionada, o "Veja também". Assim nenhuma página termina sem um próximo passo.
+populares = sorted([o for o in itens if o['mais']], key=lambda o: o['mais'])[:3]
+
 for k, it in enumerate(itens):
     # relacionadas: até 3 da mesma categoria, na ordem do index a partir desta
     mesma = [o for o in itens[k + 1:] + itens[:k] if o['cat'] == it['cat']][:3]
+    titulo_rel = 'Perguntas relacionadas'
+    if not mesma:                                   # categoria com uma pergunta só: cai nas mais buscadas
+        mesma = [o for o in populares if o['id'] != it['id']][:3]
+        titulo_rel = 'Veja também'
     rel = ''
     if mesma:
         li = '\n'.join(
@@ -158,7 +166,7 @@ for k, it in enumerate(itens):
             for o in mesma)
         rel = f'''
       <section class="pergunta__relacionadas" aria-labelledby="rel-titulo">
-        <h2 id="rel-titulo" class="bloco-titulo">Perguntas relacionadas</h2>
+        <h2 id="rel-titulo" class="bloco-titulo">{titulo_rel}</h2>
         <ul class="relacionadas">
 {li}
         </ul>
@@ -175,6 +183,62 @@ for k, it in enumerate(itens):
         header=header, footer=footer, suporte=suporte), encoding='utf-8')
 
 print(f'{len(itens)} páginas em {SAIDA.relative_to(RAIZ)}/')
+
+# 404.html da Wiki. O Pages só serve o 404.html da raiz do repositório, e ele manda para <Pasta>/404.html
+# quando a pasta do projeto tem uma. Sem esta, um link antigo (pergunta removida, endereço digitado errado)
+# cai no 404 geral, que só oferece o índice interno do repositório, não a central de ajuda.
+head404 = bloco('<head>', '</head>')
+head404 = re.sub(r'<title>.*?</title>', '<title>Página não encontrada — Ajuda ComproPay</title>', head404, flags=re.S)
+head404 = re.sub(r'<meta name="description"[^>]*>', '<meta name="robots" content="noindex">', head404)
+cards404 = '\n'.join(
+    f'            <li><a class="cp-panel faq-popular" href="perguntas/{o["id"]}.html"><span class="faq-popular__titulo">{o["titulo"]}</span>'
+    f'<svg class="cp-icon cp-icon--md faq-popular__seta" aria-hidden="true"><use href="DS%20wiki/icons/cp-icons.svg#cp-chevron-right"/></svg></a></li>'
+    for o in populares)
+(RAIZ / '404.html').write_text(f'''<!doctype html>
+<html lang="pt-BR">
+{head404}
+<body>
+  <!-- Gerado por tools/gerar-perguntas.py. Não edite aqui. -->
+  <a class="cp-skip-link" href="#conteudo">Pular para o conteúdo</a>
+  {bloco('<header class="site-header">', '</header>')}
+
+  <main id="conteudo" tabindex="-1">
+    <section class="faq-hero">
+      <div class="cp-page">
+        <h1>Página não encontrada</h1>
+        <p class="faq-hero__texto">Este endereço não existe ou a pergunta foi removida. Busque pelo assunto ou veja as dúvidas mais buscadas.</p>
+        <form class="faq-search faq-search--com-botao" role="search" action="./" method="get">
+          <div class="cp-field">
+            <div class="cp-field__box">
+              <svg class="cp-icon cp-icon--md" aria-hidden="true"><use href="DS%20wiki/icons/cp-icons.svg#cp-search"/></svg>
+              <input class="cp-input" id="faq-busca" name="q" type="search" placeholder=" " autocomplete="off">
+              <label class="cp-field__label" for="faq-busca">Buscar uma dúvida</label>
+            </div>
+          </div>
+          <button class="cp-btn cp-btn--primary" type="submit">Buscar</button>
+        </form>
+        <section class="faq-mais-buscados" aria-labelledby="faq-mais-buscados-titulo">
+          <h2 id="faq-mais-buscados-titulo" class="faq-mais-buscados__titulo">Mais buscados</h2>
+          <ul class="faq-mais-buscados__lista">
+{cards404}
+          </ul>
+        </section>
+      </div>
+    </section>
+
+    <div class="cp-page faq-corpo">
+      <p class="pergunta__voltar"><a class="cp-btn cp-btn--secondary" href="./">Ver todas as dúvidas</a></p>
+      {suporte}
+    </div>
+  </main>
+
+  {bloco('<footer class="cp-footer">', '</footer>')}
+  <script src="assets/config.js"></script>
+  <script src="assets/ajuda.js" defer></script>
+</body>
+</html>
+''', encoding='utf-8')
+print('404.html da Wiki')
 
 # Lista do index.html: um link por pergunta. data-busca leva o texto da resposta para a busca da página.
 def texto(h):
