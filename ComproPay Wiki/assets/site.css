@@ -25,7 +25,11 @@ main:focus { outline: none; } /* recebe foco só pelo "Pular para o conteúdo" *
 /* Faixa de topo: título e busca sobre o tom mais claro da primária. */
 .faq-hero { background: var(--cp-primary-50); border-bottom: var(--cp-border-hairline) solid var(--cp-primary-100); padding-block: var(--cp-space-12) var(--cp-space-10); text-align: center; }
 .faq-hero h1 { margin: 0; font-size: var(--cp-type-h2-size); line-height: var(--cp-type-h2-line); font-weight: var(--cp-font-weight-bold); }
+.faq-hero__texto { margin: var(--cp-space-3) auto 0; max-width: 40rem; color: var(--cp-text-secondary); }
 .faq-search { max-width: 36rem; margin: var(--cp-space-6) auto 0; text-align: left; }
+/* Busca com botão de enviar (página 404): campo e botão na mesma linha. Na home não há botão: a busca filtra enquanto digita. */
+.faq-search--com-botao { display: flex; align-items: flex-start; gap: var(--cp-space-3); }
+.faq-search--com-botao .cp-field { flex: 1 1 auto; min-width: 0; }
 
 .faq-corpo { padding-block: var(--cp-space-8) var(--cp-space-16); }
 

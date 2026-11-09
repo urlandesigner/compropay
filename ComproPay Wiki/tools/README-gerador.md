@@ -41,4 +41,5 @@ O gerador refaz `perguntas/` e a lista do `index.html`. Não edite esses dois à
 - **Atualizado em:** `data-atualizado="2026-10-28"` no `<details>` da pergunta, depois rode o gerador.
 - **Atualizadas recentemente:** aparece sozinha no `index.html` quando alguma pergunta tem `data-atualizado` (as 5 mais novas). Sem data nenhuma, a seção some.
 - **Lista curta:** sem filtro nem busca, a home mostra as 8 primeiras perguntas e o botão "Ver todas" abre o resto (`LIMITE`, em `assets/faq.js`). Sem JavaScript a lista vem inteira.
-- **Sugestões de busca:** links `data-sugestao` no `index.html`. **Atalho:** Ctrl+K (⌘K no Mac) leva o cursor à busca.
+- **Mais buscados:** `data-mais-buscada="1"` (ou 2, 3) no `<details>` põe a pergunta num dos 3 cards sob a busca da home e, nas páginas de categoria com uma pergunta só, no "Veja também". **Atalho:** Ctrl+K (⌘K no Mac) leva o cursor à busca.
+- **404:** `404.html` da Wiki é gerado junto. O 404 da raiz do repositório leva para ele quando o endereço errado é de dentro de `ComproPay Wiki/`.
