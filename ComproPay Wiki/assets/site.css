@@ -14,7 +14,7 @@ body { margin: 0; display: flex; flex-direction: column; min-height: 100vh; back
 
 
 /* Vídeo dentro da resposta: 16:9, ocupa a largura do corpo do acordeão. */
-.faq-video { aspect-ratio: 16 / 9; margin-block: var(--cp-space-4); border-radius: var(--cp-radius-md); overflow: hidden; background: var(--cp-gray-100); }
+.faq-video { aspect-ratio: 16 / 9; margin-block: var(--cp-space-8); border-radius: var(--cp-radius-md); overflow: hidden; background: var(--cp-gray-100); }
 .faq-video iframe, .faq-video video { width: 100%; height: 100%; border: 0; display: block; }
 
 /* As respostas vieram com parágrafos de espaço em branco como separador; eles saíram, o espaço vem daqui. */
