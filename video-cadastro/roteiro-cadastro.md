@@ -14,9 +14,9 @@ Fica de fora, de propósito:
 
 | # | Tela | Ação | Narração / legenda |
 |---|---|---|---|
-| 1 | Onboarding | toque em "Criar conta" | Abra o app e toque em Criar conta. |
-| 2 | CPF | toque no campo, teclado, toque em "Continuar" | Informe o seu CPF e toque em Continuar. |
-| 3 | Criar conta | campos aparecem preenchidos | Preencha nome, celular do Espírito Santo, e-mail, nascimento e apelido. |
+| 1 | Entrada (captura real do iPhone) | toque no campo do CPF, CPF aparece (borrado) | Abra o app e digite o seu CPF ou CNPJ. |
+| 2 | Entrada (captura real) | toque em "Começar" | Toque em Começar. |
+| 3 | Criar conta | campos aparecem preenchidos | Preencha nome, celular, e-mail, nascimento e apelido. |
 | 4 | Criar conta | rola até o gênero, toque em "Continuar" | Escolha o gênero e toque em Continuar. |
 | 5 | Confirme seus dados | rola, toque em "Confirmar" | Confira os dados e toque em Confirmar. |
 | 6 | Verificação (e-mail) | e-mail aparece, toque em "Continuar" | Agora informe o seu e-mail e toque em Continuar. |

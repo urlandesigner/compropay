@@ -1,7 +1,8 @@
 """Monta o vídeo "Como criar sua conta no app ComproPay?".
 
-Segue o ramo em que o celular é do Espírito Santo, da tela de boas-vindas até o
-pré-cadastro aprovado. Cada tela do Figma entra como está, em 414x896, sem
+Da tela de entrada até o pré-cadastro aprovado. As duas primeiras telas (entrada vazia e com o
+CPF digitado) são capturas reais do app no iPhone, com o CPF borrado (ver
+preparar-telas-reais.py); as demais vêm do Figma. Cada tela entra como está, em 414x896, sem
 redimensionar. As três telas de 414x1091 (formulário e confirmação) rolam: o
 cabeçalho e o botão ficam fixos e o meio anda.
 
@@ -27,9 +28,9 @@ FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
 
 # ---------------------------------------------------------------- roteiro
 LINHAS = [
-    "Abra o app e toque em Criar conta.",
-    "Informe o seu CPF e toque em Continuar.",
-    "Preencha nome, celular do Espírito Santo, e-mail, nascimento e apelido.",
+    "Abra o app e digite o seu CPF ou CNPJ.",
+    "Toque em Começar.",
+    "Preencha nome, celular, e-mail, nascimento e apelido.",
     "Escolha o gênero e toque em Continuar.",
     "Confira os dados e toque em Confirmar.",
     "Agora informe o seu e-mail e toque em Continuar.",
@@ -56,7 +57,7 @@ def narrar():
 
 # ---------------------------------------------------------------- telas
 ARQ = {
-    "01": "01-onboarding", "02": "02-cpf-vazio", "03": "03-cpf-digitando",
+    "01": "01-entrada-vazia", "02": "02-entrada-cpf",        # telas reais do iPhone (preparar-telas-reais.py)
     "04": "04-form-vazio", "05": "05-form-preenchido", "06": "06-confirme",
     "07": "07-email-vazio", "08": "08-email-digitado",
     "09": "09-email-codigo-vazio", "10": "10-email-codigo",
@@ -139,9 +140,8 @@ def montar_timeline(dur):
     def rola(ts, g, para, d): EV.append(dict(t=ts, tipo="rola", g=g, para=para, d=d))
     CTA = (207, 836)       # botão de baixo das telas de 896
 
-    s, e = falar(0); tap(e + 0.15, 207, 619); desliza(e + 0.45, "02"); t = e + 1.1
-    s, e = falar(1); tap(s + 0.20, 110, 478); troca(s + 0.55, "03")
-    tap(e + 0.15, 207, 537); desliza(e + 0.45, "04"); t = e + 1.1
+    s, e = falar(0); tap(s + 0.20, 150, 712); troca(s + 0.80, "02"); t = e + 0.5
+    s, e = falar(1); tap(e + 0.15, 207, 799); desliza(e + 0.45, "04"); t = e + 1.1
     s, e = falar(2); troca(s + 0.6, "05"); t = e + 0.5
     s, e = falar(3); rola(s + 0.1, "form", 195, 0.9)
     tap(e + 0.15, *CTA); desliza(e + 0.45, "06"); t = e + 1.1
