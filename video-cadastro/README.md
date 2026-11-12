@@ -6,8 +6,12 @@ vídeo do YouTube do app antigo. **Ainda não entrou:** o arquivo está pronto e
 
 - `roteiro-cadastro.md`: frases da narração, o ramo que o vídeo segue e o que
   ficou de fora
-- `fig/`: 18 telas do board `1512:27797` (App ComproPay 2), 1x, numeradas pela
-  ordem do fluxo
+- `fig/`: as telas do vídeo, 1x, numeradas pela ordem do fluxo. As duas primeiras
+  (`01-entrada-vazia`, `02-entrada-cpf`) são capturas reais do app no iPhone; as
+  outras vêm do board `1512:27797` (App ComproPay 2). O CPF aparece borrado em
+  todas elas
+- `preparar-telas-reais.py`: gera as duas telas reais a partir de
+  `capturas-iphone/cadastro/` (fora do Git), borrando o CPF
 - `build.py`: monta o vídeo e a legenda `.vtt`
 
 Para rodar, veja `../video-comum/README.md`:
